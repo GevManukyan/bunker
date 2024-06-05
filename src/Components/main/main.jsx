@@ -15,7 +15,7 @@ export const Main = () => {
     const DateCollectionRef = collection(db, "DateTimes");
 
     const futureDate = new Date().toISOString().split('T')[0]
-
+    
     useEffect(() => { getDataList() }, [])
 
     const showMonth = () => setMonth(!month)
@@ -31,7 +31,7 @@ export const Main = () => {
             setDateTimeList(filteredData.sort(function (a, b) { return (new Date(b.addedTimeforOrder.seconds)) - new Date(a.addedTimeforOrder.seconds) }));
         } catch (err) { console.log(err) }
     }
-   
+
     const addDateTime = async () => {
         if (dateTime !== "" && room !== "") {
             const timeData = getTimeDifference(dateTime);
@@ -54,8 +54,8 @@ export const Main = () => {
                 Room: room,
                 time: "-",
                 Hour: "-",
-                Income: `${menu[`${room}`].income}`, 
-                Added_Date: timeData.formattedToday.formattedToday, 
+                Income: `${menu[`${room}`].income}`,
+                Added_Date: timeData.formattedToday.formattedToday,
                 Added_Hour: timeData.formattedToday.formattedTodayHour,
                 addedTimeforOrder: new Date()
             })
@@ -82,7 +82,7 @@ export const Main = () => {
                 const q = query(DateCollectionRef, where("Added_Date", "==", `${timeFormat}`))
                 const data = await getDocs(q)
                 const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id, }));
-                const number =  filteredData.filter((item) => { return item.disabled !== true }).reduce((acc, current) => { return acc + +current.Income }, 0)
+                const number = filteredData.filter((item) => { return item.disabled !== true }).reduce((acc, current) => { return acc + +current.Income }, 0)
                 setAmount(number)
                 setDateTimeList(filteredData.sort(function (a, b) { return (new Date(b.addedTimeforOrder.seconds)) - new Date(a.addedTimeforOrder.seconds) }));
             } catch (err) { console.log(err) }

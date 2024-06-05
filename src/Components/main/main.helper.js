@@ -25,7 +25,7 @@ export function getTodayDay() {
   return { formattedToday: formattedToday, formattedTodayHour: formattedTodayHour }
 }
 
-export const menu = {
+export const menu= {
   "PS5-1": {
     income: 800,
     room: "PS5-1"
