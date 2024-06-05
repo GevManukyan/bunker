@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(142, 142, 232);
+}
+
+.formDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.addingForm {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+/* style={{ position: "absolute", right: "20px", top: "100px" }} */
+.amount{
+    position: absolute;
+    right: 20px;
+    top: 100px;
+}
+.filterForm {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.addingForm input,
+.addingForm select,
+.addingForm button,
+.filterForm input,
+.filterForm button {
+    height: 30px;
+    font-size: 20px;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+td,
+th {
+    border: 1px solid beige;
+    text-align: center;
+    font-size: 22px;
+}
+
+tr {
+    height: 40px;
+}
+
+.listItem {
+    height: 40px;
+    width: 100%;
+}
+.deleteBtn{
+    padding: 10px;
+    cursor: pointer;
+}
+.deleteBtn:hover{
+    background-color: red;
+    color: white;
+}
+.listHeader {
+    border: 3px solid beige;
+    width: 100%;
+}
+
+td input,
+td button {
+    height: 25px;
+    font-size: 15px;
+    min-width: 100px;
+    cursor: pointer;
+}
+.showMonth{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background-color: rgb(192 192 219);
+    width: 50%;
+    height: 50vh;
+    padding: 5px;
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+}
+.noneMonth{
+    display: none;
+}
+.main{
+    overflow: auto;
+}
+@media (max-width:965px){
+    table{
+        width: 965px;
+    }
+}
+@media (max-width:650px) {
+    .showMonth{
+        width: 90%;
+        height: 80vh;
+
+    }
+.amount{
+    position: static;
+}
+
+}
