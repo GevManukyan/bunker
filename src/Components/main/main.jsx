@@ -82,9 +82,9 @@ export const Main = () => {
                 const q = query(DateCollectionRef, where("Added_Date", "==", `${timeFormat}`))
                 const data = await getDocs(q)
                 const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id, }));
-                const number = filteredData.reduce((acc, current) => { return acc + +current.Income }, 0)
+                const number =  filteredData.filter((item) => { return item.disabled !== true }).reduce((acc, current) => { return acc + +current.Income }, 0)
                 setAmount(number)
-                setDateTimeList(filteredData);
+                setDateTimeList(filteredData.sort(function (a, b) { return (new Date(b.addedTimeforOrder.seconds)) - new Date(a.addedTimeforOrder.seconds) }));
             } catch (err) { console.log(err) }
         } else getDataList()
     }
