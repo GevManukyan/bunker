@@ -13,9 +13,8 @@ export const Main = () => {
     const [amount, setAmount] = useState(0)
     const [month, setMonth] = useState(false)
     const DateCollectionRef = collection(db, "DateTimes");
-
     const futureDate = new Date().toISOString().split('T')[0]
-    
+
     useEffect(() => { getDataList() }, [])
 
     const showMonth = () => setMonth(!month)
@@ -35,12 +34,12 @@ export const Main = () => {
     const addDateTime = async () => {
         if (dateTime !== "" && room !== "") {
             const timeData = getTimeDifference(dateTime);
-            const hoursDifference = `${timeData.hours}.${timeData.minutes / 60 * 10}`.slice(0, 3)
+            const hoursDifference = `${timeData.hours}.${`${timeData.minutes / 60 * 10}`.slice(0, 4).replace(".", "")}`
             await addDoc(DateCollectionRef, {
                 Room: room,
                 time: dateTime,
                 Hour: hoursDifference,
-                Income: `${Math.floor(menu[`${room}`].income * +hoursDifference)}`,
+                Income: `${Math.ceil(menu[`${room}`].income * +hoursDifference)}`,
                 Added_Date: timeData.formattedToday.formattedToday,
                 Added_Hour: timeData.formattedToday.formattedTodayHour,
                 addedTimeforOrder: new Date()
@@ -68,9 +67,9 @@ export const Main = () => {
     const updateDateTime = async (id, roomName) => {
         if (updateHours != "") {
             const difference = getTimeDifference(updateHours);
-            const hoursDifference = `${difference.hours}.${difference.minutes / 60 * 10}`.slice(0, 3)
+            const hoursDifference = `${difference.hours}.${`${difference.minutes / 60 * 10}`.slice(0, 4).replace(".", "")}`
             const updateTime = doc(db, "DateTimes", id)
-            await updateDoc(updateTime, { time: updateHours, Hour: hoursDifference, Income: (`${Math.floor(menu[`${roomName}`].income * +hoursDifference)}`) })
+            await updateDoc(updateTime, { time: updateHours, Hour: hoursDifference, Income: (`${Math.ceil(menu[`${roomName}`].income * +hoursDifference)}`) })
             getDataList()
         }
     }
@@ -140,7 +139,7 @@ export const Main = () => {
                         return <tr key={elem.id} style={elem.disabled ? { opacity: "0.2", background: "grey", userSelect: "none" } : null} disabled={elem.disabled}>
                             <td>{menu[`${elem.Room}`].room}</td>
                             <td>{elem.time}</td>
-                            <td>{elem.Hour}</td>
+                            <td>{`${elem.Hour}`.slice(0, 3)}</td>
                             <td>{elem.Added_Date}</td>
                             <td>{elem.Added_Hour}</td>
                             <td>{elem.Income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>

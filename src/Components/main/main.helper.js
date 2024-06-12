@@ -8,6 +8,7 @@ export function getTimeDifference(dateTime) {
   const totalMinutes2 = (hours2 * 60) + minutes2;
   let diffInMinutes = Math.abs(totalMinutes1 - totalMinutes2);
   const diffHours = Math.floor(diffInMinutes / 60);
+  console.log(diffInMinutes)
   const diffMinutes = diffInMinutes % 60;
   return { hours: diffHours, minutes: diffMinutes, formattedToday: getTodayDay() };
 }
