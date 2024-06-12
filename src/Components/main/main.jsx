@@ -14,7 +14,7 @@ export const Main = () => {
     const [month, setMonth] = useState(false)
     const DateCollectionRef = collection(db, "DateTimes");
     const futureDate = new Date().toISOString().split('T')[0]
-
+    const [disabledButton, setDisabledButton] = useState(false)
     useEffect(() => { getDataList() }, [])
 
     const showMonth = () => setMonth(!month)
@@ -32,10 +32,12 @@ export const Main = () => {
     }
 
     const addDateTime = async () => {
+
         if (dateTime !== "" && room !== "") {
+            setDisabledButton(true)
             const timeData = getTimeDifference(dateTime);
             const hoursDifference = `${timeData.hours}.${`${timeData.minutes / 60 * 10}`.slice(0, 4).replace(".", "")}`
-            await addDoc(DateCollectionRef, {
+            let answer = await addDoc(DateCollectionRef, {
                 Room: room,
                 time: dateTime,
                 Hour: hoursDifference,
@@ -44,10 +46,12 @@ export const Main = () => {
                 Added_Hour: timeData.formattedToday.formattedTodayHour,
                 addedTimeforOrder: new Date()
             })
+            if(answer) setDisabledButton(false)
             setDateTime("")
             setRoom("")
             getDataList()
         } else if (room.includes('Nargile')) {
+            setDisabledButton(true)
             const timeData = getTimeDifference(dateTime);
             await addDoc(DateCollectionRef, {
                 Room: room,
@@ -113,7 +117,7 @@ export const Main = () => {
                         <option value="Nargile-3">Նարգիլե-3</option>
                     </select>
                     <input type='text' onChange={(e) => setDateTime(e.target.value)} value={dateTime} />
-                    <button onClick={() => addDateTime()}>Ավելացնել</button>
+                    <button onClick={() => addDateTime()} disabled={disabledButton}>Ավելացնել</button>
                     <button onClick={() => showMonth()}>Ամիսներ</button>
                 </div>
                 <div className="filterForm">
