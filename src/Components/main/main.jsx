@@ -124,7 +124,7 @@ export const Main = () => {
                     <input type='date' onChange={(e) => setFilterDate(e.target.value)} defaultValue={futureDate} />
                     <button onClick={() => filterDateFunc()}>Որոնել</button>
                 </div>
-                <h1 className="amount">{amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} դր</h1>
+                <h1 className="amount">{ !isNaN(amount) ? amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "դր" : "Սպասում"}</h1>
             </div>
             <table>
                 <thead className="listHeader">
@@ -143,10 +143,10 @@ export const Main = () => {
                         return <tr key={elem.id} style={elem.disabled ? { opacity: "0.2", background: "grey", userSelect: "none" } : null} disabled={elem.disabled}>
                             <td>{menu[`${elem.Room}`].room}</td>
                             <td>{elem.time}</td>
-                            <td>{`${elem.Hour}`.slice(0, 3)}</td>
+                            <td>{!isNaN(elem.Hour) || elem.Hour == '-'?`${elem.Hour}`.slice(0, 3) : "Սպասում"}</td>
                             <td>{elem.Added_Date}</td>
                             <td>{elem.Added_Hour}</td>
-                            <td>{elem.Income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                            <td>{!isNaN(elem.Income) ? elem.Income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "դր" : "Սպասում"}</td>
                             {!elem.Room.includes("Nargile") ? (
                                 <td>
                                     <input onChange={(e) => setUpdateHours(e.target.value)} disabled={elem.disabled} style={elem.disabled ? { pointerEvents: "none" } : null} />
