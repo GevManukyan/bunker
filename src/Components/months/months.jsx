@@ -25,7 +25,7 @@ export const Months = ({ setMonth }) => {
         <div>
             <div className="monthsContainer">
                 <div className="searchingForm">
-                    <p onClick={() => setMonth(false)} style={{ position: "absolute", top: "-12px", right: "26px", "fontSize": "44px", color: "black", cursor: "pointer" }}>x</p>
+                    <p onClick={() => setMonth(false)} className="closeBtn">x</p>
                     <select onInput={(e) => setMonthForFilter(e.target.value)} value={monthForFilter}>
                         <option value="">Ամիս</option>
                         <option value="01.2024">Հունվար</option>

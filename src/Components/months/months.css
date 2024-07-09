@@ -10,6 +10,15 @@
     margin-top: 5px;
 }
 
+.closeBtn{
+
+    position: absolute;
+    top: -12px;
+    right: 26px;
+    font-size: 44px;
+    color: black;
+    cursor: pointer;
+}
 .searchingForm select,
 .searchingForm button{
     height: 30px;
@@ -20,6 +29,9 @@
 @media (max-width:737px) {
     .searchingForm{
         margin-top: 35px;
+    }
+    .closeBtn{
+        right: 12px
     }
 }
 @media (max-width:650px) {
