@@ -7,7 +7,7 @@
 }
 
 .searchingForm{
-    margin-top: 35px;
+    margin-top: 5px;
 }
 
 .searchingForm select,
@@ -16,6 +16,11 @@
     font-size: 20px;
     min-width: 150px;
     cursor: pointer;
+}
+@media (max-width:737px) {
+    .searchingForm{
+        margin-top: 35px;
+    }
 }
 @media (max-width:650px) {
     .monthsContainer{

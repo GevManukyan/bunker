@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../../config/firebase-config";
-import { getDocs, collection, addDoc, updateDoc, doc, orderBy, query, where, limit } from "firebase/firestore";
-import { getTimeDifference, getTodayDay, menu } from "./main.helper";
+import { getDocs, collection, addDoc, updateDoc, doc, query, where } from "firebase/firestore";
+import { getTimeDifference, getTodayDay, menu, optionsMenu } from "./main.helper";
 import "./main.css"
 import { Months } from "../months/months";
 export const Main = () => {
@@ -103,22 +103,12 @@ export const Main = () => {
             <div className="formDiv">
                 <div className="addingForm">
                     <select onInput={(e) => setRoom(e.target.value)} value={room}>
-                        
                         <option value="">Սենյակ</option>
-                        <option value="PS5-1">PS5-1</option>
-                        <option value="PS5-2">PS5-2</option>
-                        <option value="Xbox">Xbox</option>
-                        <option value="VipBlack">VIP BLACK</option>
-                        <option value="VipGreen">VIP GREEN</option>
-                        <option value="VipBlue">VIP BLUE</option>
-                        <option value="Poker">POKER</option>
-                        <option value="PingPong-1">PING PONG-1</option>
-                        <option value="PingPong-2">PING PONG-2</option>
-                        <option value="Nargile-1">Նարգիլե-2000դր</option>
-                        <option value="Nargile-2">Նարգիլե-3000դր</option>
-                        <option value="Nargile-3">Նարգիլե-4000դր</option>
-                        <option value="Nargile-4">Նարգիլե-5000դր</option>
-                        <option value="Nargile-5">Նարգիլե-6000դր</option>
+                        {
+                            optionsMenu.map((e) => {
+                                return <option value={e.key} key={e.key}>{e.room}</option>
+                            })
+                        }
                     </select>
                     <input type='text' onChange={(e) => setDateTime(e.target.value)} value={dateTime} />
                     <button onClick={() => addDateTime()} disabled={disabledButton}>Ավելացնել</button>
