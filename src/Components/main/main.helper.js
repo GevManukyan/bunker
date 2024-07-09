@@ -65,14 +65,22 @@ export const menu= {
   },
   "Nargile-1": {
     income: 2000,
-    room: "Նարգիլե-1"
+    room: "Նարգիլե-2000"
   },
   "Nargile-2": {
     income: 3000,
-    room: "Նարգիլե-2"
+    room: "Նարգիլե-3000"
   },
   "Nargile-3": {
     income: 4000,
-    room: "Նարգիլե-3"
+    room: "Նարգիլե-4000"
+  } ,
+  "Nargile-4": {
+    income: 5000,
+    room: "Նարգիլե-5000"
+  } ,
+  "Nargile-5": {
+    income: 6000,
+    room: "Նարգիլե-6000"
   }
 }

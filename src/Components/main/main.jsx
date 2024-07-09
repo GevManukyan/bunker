@@ -46,7 +46,7 @@ export const Main = () => {
                 Added_Hour: timeData.formattedToday.formattedTodayHour,
                 addedTimeforOrder: new Date()
             })
-            if(answer) setDisabledButton(false)
+            if (answer) setDisabledButton(false)
             setDateTime("")
             setRoom("")
             getDataList()
@@ -62,6 +62,7 @@ export const Main = () => {
                 Added_Hour: timeData.formattedToday.formattedTodayHour,
                 addedTimeforOrder: new Date()
             })
+            setDisabledButton(false)
             setDateTime("")
             setRoom("")
             getDataList()
@@ -102,6 +103,7 @@ export const Main = () => {
             <div className="formDiv">
                 <div className="addingForm">
                     <select onInput={(e) => setRoom(e.target.value)} value={room}>
+                        
                         <option value="">Սենյակ</option>
                         <option value="PS5-1">PS5-1</option>
                         <option value="PS5-2">PS5-2</option>
@@ -112,9 +114,11 @@ export const Main = () => {
                         <option value="Poker">POKER</option>
                         <option value="PingPong-1">PING PONG-1</option>
                         <option value="PingPong-2">PING PONG-2</option>
-                        <option value="Nargile-1">Նարգիլե-1</option>
-                        <option value="Nargile-2">Նարգիլե-2</option>
-                        <option value="Nargile-3">Նարգիլե-3</option>
+                        <option value="Nargile-1">Նարգիլե-2000դր</option>
+                        <option value="Nargile-2">Նարգիլե-3000դր</option>
+                        <option value="Nargile-3">Նարգիլե-4000դր</option>
+                        <option value="Nargile-4">Նարգիլե-5000դր</option>
+                        <option value="Nargile-5">Նարգիլե-6000դր</option>
                     </select>
                     <input type='text' onChange={(e) => setDateTime(e.target.value)} value={dateTime} />
                     <button onClick={() => addDateTime()} disabled={disabledButton}>Ավելացնել</button>
@@ -124,7 +128,7 @@ export const Main = () => {
                     <input type='date' onChange={(e) => setFilterDate(e.target.value)} defaultValue={futureDate} />
                     <button onClick={() => filterDateFunc()}>Որոնել</button>
                 </div>
-                <h1 className="amount">{ !isNaN(amount) ? amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "դր" : "Սպասում"}</h1>
+                <h1 className="amount">{!isNaN(amount) ? amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "դր" : "Սպասում"}</h1>
             </div>
             <table>
                 <thead className="listHeader">
@@ -143,7 +147,7 @@ export const Main = () => {
                         return <tr key={elem.id} style={elem.disabled ? { opacity: "0.2", background: "grey", userSelect: "none" } : null} disabled={elem.disabled}>
                             <td>{menu[`${elem.Room}`].room}</td>
                             <td>{elem.time}</td>
-                            <td>{!isNaN(elem.Hour) || elem.Hour == '-'?`${elem.Hour}`.slice(0, 3) : "Սպասում"}</td>
+                            <td>{!isNaN(elem.Hour) || elem.Hour == '-' ? `${elem.Hour}`.slice(0, 3) : "Սպասում"}</td>
                             <td>{elem.Added_Date}</td>
                             <td>{elem.Added_Hour}</td>
                             <td>{!isNaN(elem.Income) ? elem.Income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "դր" : "Սպասում"}</td>
