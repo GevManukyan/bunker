@@ -109,7 +109,8 @@ export const optionsMenu = [
   },
   {
     income: 1000,
-    room: "VIP GREEN"
+    room: "VIP GREEN" ,
+    key: "VipGreen"
   },
   {
     income: 1000,
